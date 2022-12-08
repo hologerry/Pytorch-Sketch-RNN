@@ -20,14 +20,14 @@ if __name__ == "__main__":
     data = normalize(data)
     N_max = max_size(data)
 
-    output_folder = "output"
+    output_folder = "output_2"
     ckpt_save_path = os.path.join(output_folder, "ckp")
     image_save_path = os.path.join(output_folder, "img")
     os.makedirs(ckpt_save_path, exist_ok=True)
     os.makedirs(image_save_path, exist_ok=True)
     model = Model(ckpt_save_path, image_save_path, hp, N_max, device)
     for iter in range(50001):
-        model.train(iter)
+        model.train(iter, data)
 
     # """
     # sample_iter = 50000

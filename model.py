@@ -79,11 +79,11 @@ class Model:
             print(
                 f"iter {iter:06d}, loss: {loss.item():.4f} recon_loss: {recon_loss.item():.4f} kl_loss: {kl_loss.item():.4f}"
             )
-            self.encoder_optimizer = lr_decay(self.encoder_optimizer)
-            self.decoder_optimizer = lr_decay(self.decoder_optimizer)
+            self.encoder_optimizer = lr_decay(self.encoder_optimizer, self.hp)
+            self.decoder_optimizer = lr_decay(self.decoder_optimizer, self.hp)
         if iter % 100 == 0:
             self.save(iter)
-            self.conditional_generation(iter)
+            self.conditional_generation(data, iter)
 
     def bivariate_normal_pdf(self, dx, dy):
         z_x = ((dx - self.mu_x) / self.sigma_x) ** 2
